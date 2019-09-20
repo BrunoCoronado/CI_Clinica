@@ -19,7 +19,7 @@ class Paciente extends CI_Controller {
         $this->load->helper('form');
         $this->load->library('form_validation');
 
-        $this->form_validation->set_rules('nombre', 'Title', 'required');
+        $this->form_validation->set_rules('nombre', 'Nombre', 'required');
         $this->form_validation->set_rules('dpi', 'DPI', 'required');
         $this->form_validation->set_rules('telefono', 'Telefono', 'required');
         $this->form_validation->set_rules('correo', 'Correo', 'required');
@@ -30,7 +30,8 @@ class Paciente extends CI_Controller {
             $this->load->view('templates/footer');          
         }else{
             $this->paciente_model->nuevoPaciente();
-            $this->index();
+            $codigo = $this->paciente_model->obtenerCodigoUltimoPaciente()[0]['codigoPaciente'];
+            redirect('/alergia/administrarAlergias/'.$codigo);
         }
     }
 
@@ -76,5 +77,11 @@ class Paciente extends CI_Controller {
     public function eliminar($codigo){
         $this->paciente_model->eliminarPaciente($codigo);
         $this->index();
+    }
+
+    public function crearAlergias(){
+        $this->load->view('templates/header');
+        $this->load->view('crear_alergias_paciente');
+        $this->load->view('templates/footer');          
     }
 }

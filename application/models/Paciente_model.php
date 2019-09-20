@@ -15,6 +15,12 @@ class Paciente_model extends CI_Model {
         return $query->result_array();
     }
 
+    public function obtenerCodigoUltimoPaciente(){
+        $this->db->select_max('codigoPaciente');
+        $query = $this->db->get('paciente');
+        return $query->result_array();
+    }
+
     public function nuevoPaciente(){
         $data = array(
             'dpi' => $this->input->post('dpi'),
