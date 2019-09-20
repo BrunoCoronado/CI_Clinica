@@ -9,13 +9,72 @@ class Paciente extends CI_Controller {
 
     public function index(){
         $data['pacientes'] = $this->paciente_model->obtenerPacientes();
-        
+
+        $this->load->view('templates/header', $data);
         $this->load->view('paciente_view', $data);
+        $this->load->view('templates/footer', $data);          
     }
 
-    public function view(){
-        $data['pacientes'] = $this->paciente_model->obtenerPacientes();
+    public function crear(){
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_rules('nombre', 'Title', 'required');
+        $this->form_validation->set_rules('dpi', 'DPI', 'required');
+        $this->form_validation->set_rules('telefono', 'Telefono', 'required');
+        $this->form_validation->set_rules('correo', 'Correo', 'required');
         
-        $this->load->view('paciente_view', $data);
+        if($this->form_validation->run() === FALSE){
+            $this->load->view('templates/header');
+            $this->load->view('crear_paciente_view');
+            $this->load->view('templates/footer');          
+        }else{
+            $this->paciente_model->nuevoPaciente();
+            $this->index();
+        }
+    }
+
+    public function ver($codigo){
+        $data['paciente'] = $this->paciente_model->obtenerPaciente($codigo)[0];
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('ver_paciente_view', $data);
+        $this->load->view('templates/footer', $data);          
+    }
+
+    public function cargar($codigo){
+        $data['paciente'] = $this->paciente_model->obtenerPaciente($codigo)[0];
+        $data['codigo'] = $codigo;
+
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('modificar_paciente_view', $data);
+        $this->load->view('templates/footer', $data);          
+    }
+
+    public function modificar($codigo){
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_rules('nombre', 'Title', 'required');
+        $this->form_validation->set_rules('dpi', 'DPI', 'required');
+        $this->form_validation->set_rules('telefono', 'Telefono', 'required');
+        $this->form_validation->set_rules('correo', 'Correo', 'required');
+        
+        if($this->form_validation->run() === FALSE){
+            $this->load->view('templates/header');
+            $this->load->view('modificar_paciente_view');
+            $this->load->view('templates/footer');          
+        }else{
+            $this->paciente_model->modificarPaciente($codigo);
+            $this->index();
+        }
+    }
+
+    public function eliminar($codigo){
+        $this->paciente_model->eliminarPaciente($codigo);
+        $this->index();
     }
 }

@@ -51,8 +51,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 $route['pacientes'] = 'paciente';
-
-$route['default_controller'] = 'paciente_controller';
+$route['pacientes/crear'] = 'paciente/crear';
+$route['pacientes/modificar/(:any)'] = 'paciente/cargar/$1';
+$route['pacientes/eliminar/(:any)'] = 'paciente/eliminar/$1';
+$route['pacientes/ver/(:any)'] = 'paciente/ver/$1';
+$route['default_controller'] = 'paciente';
 //$route['404_override'] = '';
 //$route['translate_uri_dashes'] = FALSE;
 
