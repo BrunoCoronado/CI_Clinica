@@ -1,5 +1,7 @@
 CREATE DATABASE IF NOT EXISTS clinica;
 
+USE clinica;
+
 CREATE TABLE IF NOT EXISTS paciente(
 	codigoPaciente INT NOT NULL AUTO_INCREMENT,
     dpi INT NOT NULL, 
@@ -48,3 +50,5 @@ CREATE TABLE IF NOT EXISTS examen(
     CONSTRAINT pk_examen PRIMARY KEY(codigoExamen),
     CONSTRAINT fk_examen FOREIGN KEY(codigoVisita) REFERENCES visita(codigoVisita)
 );
+
+INSERT INTO paciente(dpi, nombre, sexo, telefono, correo) VALUES(00001, 'pacienteA', 'M', '2345678', 'pacienteA@correo.com');
