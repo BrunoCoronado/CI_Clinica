@@ -4,6 +4,7 @@ class Visita extends CI_Controller {
     public function __construct(){
         parent::__construct();
         $this->load->model('visita_model');
+        $this->load->model('paciente_model');
         $this->load->helper('url_helper');
     }
 
@@ -16,6 +17,8 @@ class Visita extends CI_Controller {
     }
 
     public function crear(){
+        $data['pacientes'] = $this->paciente_model->obtenerPacientes();
+
         $this->load->helper('form');
         $this->load->library('form_validation');
 
@@ -25,16 +28,18 @@ class Visita extends CI_Controller {
         
         if($this->form_validation->run() === FALSE){
             $this->load->view('templates/header');
-            $this->load->view('crear_visita');
+            $this->load->view('crear_visita', $data);
             $this->load->view('templates/footer');          
         }else{
             $this->visita_model->nuevaVisita();
-            redirect('/visitas/administrarVisitas');
+            $codigo = $this->visita_model->obtenerCodigoUltimaVisita()[0]['codigoVisita'];
+            redirect('/examenes/administrarExamenes/'.$codigo);
         }
     }
 
     public function cargar($codigo){
         $data['visita'] = $this->visita_model->obtenerVisita($codigo)[0];
+        $data['pacientes'] = $this->paciente_model->obtenerPacientes();
 
         $this->load->helper('form');
         $this->load->library('form_validation');
@@ -53,6 +58,7 @@ class Visita extends CI_Controller {
         
         if($this->form_validation->run() === FALSE){
             $data['visita'] = $this->visita_model->obtenerVisita($codigo)[0];
+            $data['pacientes'] = $this->paciente_model->obtenerPacientes();
             $this->load->view('templates/header');
             $this->load->view('modificar_visita', $data);
             $this->load->view('templates/footer');          

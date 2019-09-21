@@ -16,9 +16,9 @@
                             </div> 
                             <div class="form-group">
                                 <label>Sexo</label>
-                                <select class="form-control">
-                                    <option>M</option>
-                                    <option>F</option>
+                                <select name="sexo" class="form-control">
+                                    <option value="M">M</option>
+                                    <option value="F">F</option>
                                 </select>
                             </div>
                         </div>

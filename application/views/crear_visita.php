@@ -18,7 +18,11 @@
                         <div class="col-sm-12 col-md-6">
                             <div class="form-group">
                                 <label>Paciente</label>
-                                <input type="number" class="form-control" placeholder="Paciente" name="codigoPaciente">
+                                <select name="codigoPaciente" class="form-control">
+                                <?php foreach ( $pacientes as $paciente ): ?>
+                                    <?php echo  '<option value="'.$paciente['codigoPaciente'].'">'.$paciente['nombre'].'</option>'?> 
+                                <?php endforeach; ?>
+                                </select>
                             </div> 
                         </div>
                     </div>

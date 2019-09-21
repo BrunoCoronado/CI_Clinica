@@ -6,12 +6,18 @@ class Visita_model extends CI_Model {
     }
 
     public function obtenerVisitas(){
-        $query = $this->db->query('SELECT * FROM visita WHERE estado = 0');
+        $query = $this->db->query('SELECT * FROM visita v JOIN paciente p ON v.codigoPaciente = p.codigoPaciente WHERE v.estado = 0 AND p.estado = 0');
         return $query->result_array();
     }
 
     public function obtenerVisita($codigo){
         $query = $this->db->query('SELECT * FROM visita WHERE estado = 0 AND codigoVisita = '.$codigo);
+        return $query->result_array();
+    }
+
+    public function obtenerCodigoUltimaVisita(){
+        $this->db->select_max('codigoVisita');
+        $query = $this->db->get('visita');
         return $query->result_array();
     }
 
@@ -38,14 +44,8 @@ class Visita_model extends CI_Model {
     }
 
     public function eliminarVisita($codigo){
-        $visita = $this->obtenerVisita($codigo)[0];
-        $data = array(
-            'codigoVisita' => $codigo,
-            'fecha' => $visita['fecha'],
-            'motivo' => $visita['motivo'],
-            'codigoPaciente' => $visita['codigoPaciente'],
-            'estado' => '1'
-        );
-        return $this->db->replace('visita', $data);
+        $this->db->set('estado', '1', FALSE);
+        $this->db->where('codigoVisita', $codigo);
+        $this->db->update('visita');
     }
 }

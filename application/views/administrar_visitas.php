@@ -18,7 +18,7 @@
                     <tr>
                         <?php echo  '<td>'.$visita['fecha'].'</td>'?>
                         <?php echo  '<td>'.$visita['motivo'].'</td>'?>
-                        <?php echo  '<td>'.$visita['codigoPaciente'].'</td>'?>
+                        <?php echo  '<td>'.$visita['nombre'].'</td>'?>
                         <td><p><a  class="btn btn-warning" href="<?php echo site_url('visitas/administrarVisitas/modificar/cargar/'.$visita['codigoVisita']); ?>">Modificar</a></p></td>
                         <td><p><a  class="btn btn-danger" href="<?php echo site_url('visitas/administrarVisitas/eliminar/'.$visita['codigoVisita']); ?>">Eliminar</a></p></td>
                     </tr>

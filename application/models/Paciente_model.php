@@ -25,7 +25,7 @@ class Paciente_model extends CI_Model {
         $data = array(
             'dpi' => $this->input->post('dpi'),
             'nombre' => $this->input->post('nombre'),
-            'sexo' => 'M',
+            'sexo' => $this->input->post('sexo'),
             'telefono' => $this->input->post('telefono'),
             'correo' => $this->input->post('correo'),
             'estado' => '0'
@@ -34,29 +34,19 @@ class Paciente_model extends CI_Model {
     }
 
     public function modificarPaciente($codigo){
-        $data = array(
-            'codigoPaciente' => $codigo,
-            'dpi' => $this->input->post('dpi'),
-            'nombre' => $this->input->post('nombre'),
-            'sexo' => 'M',
-            'telefono' => $this->input->post('telefono'),
-            'correo' => $this->input->post('correo'),
-            'estado' => '0'
-        );
-        return $this->db->replace('paciente', $data);
+        $this->db->set('dpi', $this->input->post('dpi'), FALSE);
+        $this->db->set('nombre', $this->input->post('nombre'));
+        $this->db->set('sexo', $this->input->post('sexo'));
+        $this->db->set('telefono', $this->input->post('telefono'), FALSE);
+        $this->db->set('correo', $this->input->post('correo'));
+        $this->db->set('estado', '0');
+        $this->db->where('codigoPaciente', $codigo, FALSE);
+        $this->db->update('paciente');
     }
 
     public function eliminarPaciente($codigo){
-        $paciente = $this->obtenerPaciente($codigo)[0];
-        $data = array(
-            'codigoPaciente' => $codigo,
-            'dpi' => $paciente['dpi'],
-            'nombre' => $paciente['nombre'],
-            'sexo' => 'M',
-            'telefono' => $paciente['telefono'],
-            'correo' => $paciente['correo'],
-            'estado' => '1'
-        );
-        return $this->db->replace('paciente', $data);
+        $this->db->set('estado', '1', FALSE);
+        $this->db->where('codigoPaciente', $codigo);
+        $this->db->update('paciente');
     }
 }
