@@ -33,5 +33,5 @@
             </table>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary btn-block" onclick="location.href='<?php echo base_url();?>index.php/paciente/crear'">Crear Paciente</button>
+    <button type="submit" class="btn btn-primary btn-block" onclick="location.href='<?php echo base_url();?>/paciente/crear'">Crear Paciente</button>
 </div>

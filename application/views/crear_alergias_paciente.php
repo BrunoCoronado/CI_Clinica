@@ -25,5 +25,5 @@
     </div>
     <td><p><a  class="btn btn-primary btn-block" href="<?php echo site_url('alergia/administrarAlergias/crear/'.$codigoPaciente); ?>">Crear Alergia</a></p></td>
     <td><p><a  class="btn btn-primary btn-block" href="<?php echo site_url('referencias/administrarReferencias/'.$codigoPaciente); ?>">Agregar Referencias</a></p></td>
-    <button type="submit" class="btn btn-primary btn-block" onclick="location.href='<?php echo base_url();?>index.php/pacientes'">Finalizar</button>
+    <button type="submit" class="btn btn-primary btn-block" onclick="location.href='<?php echo base_url();?>pacientes'">Finalizar</button>
 </div>
