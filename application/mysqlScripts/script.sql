@@ -54,21 +54,3 @@ CREATE TABLE IF NOT EXISTS examen(
     CONSTRAINT pk_examen PRIMARY KEY(codigoExamen),
     CONSTRAINT fk_examen FOREIGN KEY(codigoVisita) REFERENCES visita(codigoVisita)
 );
-
-INSERT INTO paciente(dpi, nombre, sexo, telefono, correo, estado) VALUES(00001, 'pacienteA', 'M', '2345678', 'pacienteA@correo.com', 0);
-
-SELECT * FROM paciente WHERE estado = 0;
-SELECT * FROM paciente;
-
-INSERT INTO alergia(nombre, codigoPaciente, estado) VALUES('alergia a las abejas', 1, 0);
-
-SELECT * FROM alergia;
-
-UPDATE alergia SET estado = 0 WHERE codigoAlergia > 0;
-
-SELECT * FROM referencia;
-
-INSERT INTO referencia(nombre, parentezco, telefono, correo, codigoPaciente, estado) 
-VALUES('ref1', 'parentezcoA', 151226, 'abc@gmai.com', 1, 0);
-
-UPDATE referencia SET estado = 0 WHERE codigoReferencia > 0;
