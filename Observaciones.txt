@@ -1,0 +1,24 @@
+Observaciones:
+	Duda con las rutas, como las estas manejando
+	En las vistas, a veces pones index.php/ en la ruta, y en otras no, a mi no me funcionan cuando no la tienen
+	en las validaciones, es mejor colocar un mensaje mas amigable, siempre ten la plantilla que utilices a la mano para consultar el codigo de js que tenga
+	validar que el campo de correo tenga el formato de correo
+	al mostrar la ventana de alergias, seria bueno mostrar el nombre del paciente
+	Normalmente se maneja estado 1 como activo y 0 como inactivo
+	Esta bien en modo en que manejaste los estados
+	La fecha si seria bueno crear un datepicker (js) debe incluirlo el template que estes trabajando, trabajarlo como date
+	siempre tener en las tablas, campos de quien crea el registro, la fecha y hora, con un datetime o un timestamp, aunqeu como ahora no manejamos usuarios en este ejercicio,esta bien que no lo hayas colocado
+	Para los examenes
+	cuando modifiques un valor, cambia el titulo de la pantalla, como al modificar una visita, pon modificar cita
+	Te va a ser muy util aprender a utilizar DATATABLE (js) para el manejo de los grids
+	Me gusta que tu codigo este bien indentado y ordenado :D es dificil encontrar eso
+	Las vistas seria bueno que las organizaras por carpetas. ejemplo
+		alergia/crear_alergia.php
+		alergia/crear_alergias_paciente.php
+		paciente/modificar
+		paciente/crear
+		paciente/view
+	Aplica Js cuando puedas, pero esta bien que hagas las validaciones con php
+	Normalmente para los grid se aplican filtros, de fecha, por paciente, etc, asi que toma eso en cuenta cuando hagas tus querys
+	para los select, busca utilizar select2 para mejorar la busqueda de registros, para un sistema empresarial que tiene grandes cantidades de datos, este elemento ayuda un monton
+	Te recomiendo que busques templates para admin, que tienen el menu lateral con los modulos, normalmente se usan de ese tipo para los sistemas
